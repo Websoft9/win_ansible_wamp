@@ -6,15 +6,14 @@
 
 ## 通过 WAMP 管理服务
 
-远程桌面到服务器，点击 WAMP 图标，然后点击【重新启动所有服务】，就可以同时重启 Apache, MySQL & MariaDB 服务
+远程桌面到服务器，点击 WAMP 图标，选择 Apache 或 MySQL，然后点击【Restart】，就可以重启服务
 
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-clicks-websoft9.png)
+![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wamp-bitnami001-websoft9.png)
 
 ## 通过 Windows 系统服务 管理服务
 
 远程桌面到服务器，打开 Windows 系统的服务管理工具：【开始菜单】>【管理工具】>【服务】
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-ss-websoft9.png)
+![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wamp-managerservice-websoft9.png)
 
-- wampapache64 代表的是 Apache 服务
-- wampMysql，代表的是 MySQL 服务
-- wampMariadb，代表的是 MariaDB 服务
+- wampstackApache 代表的是 Apache 服务
+- wampstackMySQL，代表的是 MySQL 服务

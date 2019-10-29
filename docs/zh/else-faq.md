@@ -8,12 +8,12 @@ prefork
 
 #### Apache 虚拟主机配置文件是什么？
 
-虚拟主机配置文件是 Apache 用于管理多个网站的**配置段集合**，路径为：*C:\websoft9\wampserver\bin\apache\apache2.4.x\conf\extra\httpd-vhosts.conf*。  
+虚拟主机配置文件是 Apache 用于管理多个网站的**配置段集合**，路径为：*C:\websoft9\wampstack\apache2\conf\bitnami\bitnami-apps-vhosts.conf*。  
 每个配置段的形式为： `<VirtualHost *:80> ...</VirtualHost>`，有多少个网站就有多少个配置段
 
 #### 如何修改示例网站根目录？
 
-示例网站路径信息 *C:\websoft9\wampserver\www* 存放在 [Apache 虚拟主机配置文件](/zh/stack-components.md#apache)中
+示例网站路径信息 *C:\wwwroot* 存放在 [Apache 虚拟主机配置文件](/zh/stack-components.md#apache)中
 
 #### WAMP 环境是否支持部署多个网站？
 
@@ -21,7 +21,7 @@ prefork
 
 #### 如何设置 phpMyAdmin 只允许在127.0.0.1访问？
 
-镜像默认开启了 phpMyAdmin 远程访问，若想关闭之，请修改：*C:\websoft9\wampserver\alias\phpmyadmin.conf* 
+镜像默认开启了 phpMyAdmin 远程访问，若想关闭之，请修改：*C:\websoft9\wampstack\apps\phpmyadmin\conf\httpd-vhosts.conf* 
 
 找到如下 `<ifDefine APACHE24>...</ifDefine>` 配置项 
 
@@ -39,7 +39,11 @@ prefork
 	</ifDefine>
 ```
 
-修改后[重启 WAMP 所有服务](//zh/admin-services.md)后生效
+#### 如何禁止外界访问phpMyAdmin？
+
+连接服务器，编辑 [phpMyAdmin 配置文件](/zh/stack-components.md#phpmyadmin)，将其中的 `Require all granted` 更改为 `Require ip 192.160.1.0`，然后重启 Apache 服务
+
+修改后[重启 WAMP 所有服务](/zh/admin-services.md)后生效
 
 #### 如果没有域名是否可以部署 WAMP？
 
@@ -52,10 +56,6 @@ prefork
 #### 是否有可视化的数据库管理工具？
 
 有，内置phpMyAdmin，访问地址：*http://服务器公网IP/phpmyadmin*
-
-#### 如何禁止外界访问phpMyAdmin？
-
-连接服务器，编辑 [phpMyAdmin 配置文件](/zh/stack-components.md#phpmyadmin)，将其中的 `Require all granted` 更改为 `Require ip 192.160.1.0`，然后重启 Apache 服务
 
 #### 网站源码路径如何修改？
 

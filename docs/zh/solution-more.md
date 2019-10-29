@@ -14,7 +14,7 @@
    ```text
    <VirtualHost *:80>
    ServerName www.mydomain.com # 此处修改为你的域名
-   DocumentRoot "C:\websoft9\wampserver\www\mysite2"
+   DocumentRoot "C:\wwwroot\mysite2"
    ...
    ```
 3. 保存配置文件，重启 [Apache 服务](/zh/admin-services.md)
@@ -29,7 +29,7 @@
  LoadModule rewrite_module modules/mod_rewrite.so #若前面有"#"号则需要将其去掉，使之支持 mod_rewrite 模块；
 ```
 2.  保证 [Apache 虚拟主机配置文件](/zh/stack-components.md#apache)中 VirtualHost 配置段中增加 AllowOverride All
-3.  给需要使用伪静态的网站的根目录中增加.htaccess文件，并在其中配置伪静态规则
+3.  给需要使用伪静态的网站的根目录中增加 `.htaccess` 文件，并在其中配置伪静态规则
 
 ## 重置 MySQL 密码
 
@@ -42,15 +42,15 @@
 ### 将 MySQL 更改为临时免密模式
 
 1. 远程连接到服务器，打开 [MySQL 配置文件](/zh/stack-components.html#mysql)，在 [mysqld] 配置项中增加一行 `skip-grant-tables`，保存
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-addconfigtomysqld-websoft9.png)
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wamp-addconfigtomysqld-websoft9.png)
 
 2. 重启 MySQL 服务
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-restartmysqlbys-websoft9.png)
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wamp-managerservice-websoft9.png)
 
 ### 修改密码 
 
 - 进入到 MySQL 下的 bin 目录，按住键盘 `Shift`键的同时点击鼠标右键，
-  ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-opencmdinbin-websoft9.png)
+  ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wamp-opencmdinbin-websoft9.png)
 
 - 进入命令窗口，依次运行下列命令：
    ```
@@ -84,15 +84,6 @@ memory_limit – Minimum: 256M
 ```
 2. 修改所需的参数，保存并重启 [Apache 服务](/zh/admin-services.md)
 
-除了直接编辑 php.ini 文件之外，你也可以通过 WAMP 的图形化界面修改 PHP 配置文件
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-phpini-websoft9.png)
-
-
-## PHP版本切换
-
-WAMP 支持 PHP 版本在线切换
-
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-changephpversion-websoft9.png)
 
 ## PHP 扩展
 
@@ -100,16 +91,11 @@ WAMP 支持 PHP 版本在线切换
 
 1. 下载正确的 PHP 扩展文件（[注意事项](https://www.php.net/manual/zh/install.pecl.windows.php)），上传到服务器的 [PHP 扩展目录](/zh/stack-components.md#php)
 
-2. 开启或关闭扩展
-
-   - 通过 WAMP 可视化工具设置
-     ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-setphpexts-websoft9.png)
-   
-   - 通过修改 PHP 配置文件设置
-     ```
-     extension=php_bz2.dll
-     ;extension=php_com_dotnet.dll
-     ```
+2. 通过修改 PHP 配置文件设置，开启或关闭扩展
+   ```
+   extension=php_bz2.dll
+   ;extension=php_com_dotnet.dll
+   ```
 
 不同的 PHP 扩展安装有一定的差异，具体以扩展提供的文档为准
 
@@ -117,13 +103,11 @@ WAMP 支持 PHP 版本在线切换
 
 WAMP 镜像中安装 composer 的方法步骤如下：
 
-1. 进入到 PHP7.0.33 目录，按住 shift + 鼠标右键，选择“在此处打开命令行窗口”；
+1. 进入到 PHP 目录，按住 shift + 鼠标右键，选择“在此处打开命令行窗口”；
 2. 输入 php -r "readfile('https://getcomposer.org/installer');" | php 安装 composer；
 3. 在该目录下新建 composer.bat 文件，并编辑输入：```@php "%~dp0composer.phar" %*```；
-4. 将 PHP 所在目录路径添加到环境变量中，添加方法参考：[windows系统如何设置添加环境变量？](https://jingyan.baidu.com/article/47a29f24610740c0142399ea.html)
+4. 将 PHP 所在目录路径添加到环境变量中，添加方法参考：[Windows系统如何设置添加环境变量？](https://support.websoft9.com/docs/windows/solution-environmentvar.html)
 5. 至此，composer 安装完毕。
-
-> 因为 WAMP 有多个 PHP 版本，所以需要在每个 PHP 目录下都按照以上教程安装一遍，且在同一时间只能加入某一个版本的 PHP 路径到环境变量，不能同时将所有的 PHP 路径加入到环境变量中去。在切换 PHP版本时，应当同时修改环境变量。
 
 ## 修改网站根目录
 
@@ -131,7 +115,7 @@ WAMP 镜像中安装 composer 的方法步骤如下：
 
 WAMP 环境的根目录是可以被修改的，具体只需2个步骤：
 
-1. 修改[虚拟主机配置文件](/zh/stack-components.html#apache)，将网站对应的<VirtualHost *:80>...</VirtualHost> 中 DocumentRoot 和 Directory 的值修改成你网站的路径
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wampserver/wampserver-mddfvhost-websoft9.png)
+1. 修改[虚拟主机配置文件](/zh/stack-components.html#apache)，将网站对应的`<VirtualHost *:80>...</VirtualHost>` 中 DocumentRoot 和 Directory 的值修改成你网站的路径
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wamp-mddfvhost-websoft9.png)
    
 2. 保存后，重启 Apache 服务 

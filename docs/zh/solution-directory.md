@@ -11,13 +11,13 @@
 
 ## 迁移网站源码（本地）
 
-以将原目录 *C:\websoft9\wampserver\www* 下的 **mysite1** 迁移到 *d:\www* 目录下为例，具体步骤如下：
+以将原目录 *c:\wwwroot* 下的 **mysite1** 迁移到 *d:\www* 目录下为例，具体步骤如下：
 
 1. 使用 **远程桌面** 连接服务器，停止 [Apache 服务](/zh/admin-services.md#apache)
 2. 将 ***mysite1*** 文件夹整体拷贝到目标位置 *d:\www*
 3. 修改 [虚拟主机配置文件](/zh/stack-components.html#apache) 中 mysite1 这个网站对应的 VirtualHost 配置段 DocumentRoot, Directory 项的值，并保存它
 
-   原地址：C:\websoft9\wampserver\www\mysite1  
+   原地址：c:\wwwroot\mysite1  
    目标地址：d:\www\mysite1
 
 4. 重启 [Apache 服务](/zh/admin-services.md#apache)
@@ -27,19 +27,19 @@
 
 没有特殊情况，我们不建议迁移数据库文件到服务器上另外一个目录，毕竟主流的云厂商磁盘均可扩容。
 
-1. 停止MySQL服务
-2. 将 C:\websoft9\wampserver\bin\mysql\data 下所有文件拷贝到新目录，例如：D:\data
+1. 停止 MySQL 服务
+2. 将 *C:/websoft9/wampstack/mysql/data* 下所有文件拷贝到新目录，例如：D:\data
 3. 修改 [数据库配置文件](/zh/stack-components.md#mysql) 文件中数据存放的路径，范例参考：
 	~~~
-    datadir="C:\websoft9\wampserver\bin\mysql\data"
-    log-error="C:\websoft9\wampserver\bin\mysql\data\mysqld.log"
+    datadir="C:/websoft9/wampstack/mysql/data"
+    log-error="C:/websoft9/wampstack/mysql/data/mysqld.log"
         
     修改为：
     
     datadir="D:\data"
     log-error="D:\data\mysqld.log"
     ~~~
- 4. 重启MySQL服务
+ 4. 重启 MySQL 服务
 
 ## 迁移到外部服务器
 

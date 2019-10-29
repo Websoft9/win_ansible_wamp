@@ -22,7 +22,6 @@ module.exports = [
       '/zh/solution-https',
       '/zh/solution-backup',
       '/zh/solution-upgrade',
-      ['https://support.websoft9.com/docs/wampserver/installation/zh','开源应用安装示例（集）'],
       '/zh/solution-more',
     ]
   },

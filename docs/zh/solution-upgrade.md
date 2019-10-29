@@ -18,19 +18,15 @@ Windows服务器的更新与本地电脑类似，手动找到更新管理程序�
 
 1. 左击右下角任务栏的 WAMP 图标，停止所有服务
 
-2. 到 [PHP 官网](https://windows.php.net/download/)下载最新版本的 PHP 
+2. 到 [PHP 官网](https://windows.php.net/download/)下载最新版本的 PHP7.0 
    > 注意：下载的文件为压缩包文件，且必须选择 **Thread Safe** 版本。
    	![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wampserver-phpupdate-1-websoft9.png)
 
-3. 备份原来的 C:\websoft9\wampserver\bin\php\php7.0.29 文件夹，再将该文件夹下所有文件删除，将新版 PHP 文件解压到这个文件夹里，文件夹重命名为 php7.0.31
+3. 备份原来的 C:\websoft9\wampstack\php 文件夹，再将该文件夹下所有文件删除，将新版 PHP 文件解压到这个文件夹里
 
 4. 将新版 php 文件夹下的 php.ini-production 文件重命名为 php.ini
 
-5. 查找 ```C:\websoft9\wampserver\bin\apache\apache2.4.33\conf\httpd.conf``` 文件里的 ``` LoadModule php7_module "C:/websoft9/wampserver/bin/php/php7.0.29/php7apache2_4.dll" ```,将 **php7.0.29** 修改为 **php7.0.31**
-
-> 如果在第三步中没有重命名文件夹，则该步骤可以省略。
-
-6. 左击右下角任务栏的 WAMP 图标，重新启动所有服务。
+5. 重新服务
 
 
 ## Apache 更新
@@ -46,7 +42,7 @@ Windows服务器的更新与本地电脑类似，手动找到更新管理程序�
 不支持，仅支持小版本升级。例如：5.6.x to 5.6.y 或 5.7.x to 5.7.y
 
 #### 是否支持 PHP 大版本升级，例如：PHP7.0-> PHP7.2？
-官方没有提供文档，但[stackoverflow](https://stackoverflow.com/questions/31804864/how-to-upgrade-safely-php-version-in-wamp-server)上有一个方案
+官方没有提供升级文档
 
 #### 是否支持 PHP 大版本降级，例如：PHP7.2-> PHP7.0？
 不支持
