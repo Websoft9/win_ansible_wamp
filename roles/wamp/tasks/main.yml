@@ -1,21 +1,24 @@
-# ---
-# - name: Create tampority directory
-#   win_file:
-#     path: C:\temp
-#     state: directory
+---
+- set_fact:
+    wamp_download: "{{wamp_meta[wamp_version].download}}"
 
-# - name: Download WAMP
-#   win_get_url:
-#     url: "{{WAMP72}}"
-#     dest: C:\temp\wamp.exe
+- name: Create tampority directory
+  win_file:
+    path: C:\temp
+    state: directory
 
-# - name: Create websoft9 directory
-#   win_file:
-#     path: C:\websoft9\wampstack
-#     state: directory
+- name: Download WAMP
+  win_get_url:
+    url: "{{wamp_download}}"
+    dest: C:\temp\wamp.exe
 
-# - name: Install WAMP
-#   win_shell: C:\temp\wamp.exe --mode unattended --installer-language zh-CN  --prefix C:\websoft9\wampstack --mysql_password {{mysql_password}} --launch_cloud 0
+- name: Create websoft9 directory
+  win_file:
+    path: C:\websoft9\wampstack
+    state: directory
+
+- name: Install WAMP
+  win_shell: C:\temp\wamp.exe --mode unattended --installer-language zh_CN  --prefix C:\websoft9\wampstack --base_password {{mysql_password}} --launch_cloud 0
 
 ## 更换 phpMyAdmin 配置文件
 - name: Replace phpmyadmin.conf
