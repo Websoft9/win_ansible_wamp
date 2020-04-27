@@ -1,5 +1,5 @@
 [windows-server]
-47.75.218.161
+159.138.3.212
 
 [windows-server:vars]
 ansible_ssh_user="administrator"
