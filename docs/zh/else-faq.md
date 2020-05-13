@@ -4,7 +4,7 @@
 UTF-8
 
 #### Apache工作模式有event,prefork,worker等，WAMP 默认是哪个？
-prefork
+[Apache MPM winnt](http://httpd.apache.org/docs/current/mod/mpm_winnt.html)
 
 #### Apache 虚拟主机配置文件是什么？
 
