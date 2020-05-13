@@ -3,7 +3,7 @@
 #### 默认字符集是什么？
 UTF-8
 
-#### Apache工作模式有event,prefork,worker等，WAMP 默认是哪个？
+#### WAMP使用的是哪个MPM模块？
 [Apache MPM winnt](http://httpd.apache.org/docs/current/mod/mpm_winnt.html)
 
 #### Apache 虚拟主机配置文件是什么？
