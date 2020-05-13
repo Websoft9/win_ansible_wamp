@@ -119,3 +119,19 @@ WAMP 环境的根目录是可以被修改的，具体只需2个步骤：
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wamp-mddfvhost-websoft9.png)
    
 2. 保存后，重启 Apache 服务 
+
+## 设置Apache并发连接数
+
+1. 通过取消 http.conf 文件中 `Include conf/extra/httpd-mpm.conf`的注释，启用 MPM
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/wamp/wamp-enablempm-websoft9.png)
+2. 找到 WinNT MPM 断路，修改ThreadsPerChild的值为更大，比如：15000
+   ```
+   # WinNT MPM
+   # ThreadsPerChild: constant number of worker threads in the server process
+   # MaxConnectionsPerChild: maximum number of connections a server process serves
+   <IfModule mpm_winnt_module>
+       ThreadsPerChild        150
+       MaxConnectionsPerChild   0
+   </IfModule>
+   ```
+**原理说明**：WinNT MPM 采用的是单一进程多线程模式，即只有唯一一个进程通过创建多线程处理请求。如果每个客户的业务涉及数十个请求，那么默认的 150 个线程就无法应对并发，因此修改成为比较大的值。
